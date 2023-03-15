@@ -49,15 +49,18 @@ public class PhoneBook {
     }
 
     public String reverseLookup(String phoneNumber)  {
-        /*for(String n : (phonebook).keySet()){
-            if(phonebook.get(n).contains(phoneNumber))}*/
+        for(String n : (phonebook).keySet())
+            if(phonebook.get(n).contains(phoneNumber))
+        return n;
         return null;
-
     }
 
     public List<String> getAllContactNames() {
+        List<String> allContacts = new ArrayList<>();
+        for (String n : (phonebook).keySet())
+            allContacts.add(n);
 
-        return (List<String>) phonebook.keySet();
+        return allContacts;
     }
 
     public Map<String, List<String>> getMap() {
