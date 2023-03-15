@@ -13,39 +13,32 @@ public class PhoneBook {
     private final Map<String, List<String>> phonebook;
 
     public PhoneBook(Map<String, List<String>> map) {
-        this.phonebook = null;
+        this.phonebook = map;
     }
 
     public PhoneBook() {
-        this(null);
+        this.phonebook = new LinkedHashMap<>();
     }
 
     public void add(String name, String phoneNumber) {
-        phonebook.put(name, Collections.singletonList(phoneNumber));
+        this.phonebook.put(name, Collections.singletonList(phoneNumber));
     }
 
     public void addAll(String name, String... phoneNumbers) {
-        List<String> newNumbers = new ArrayList<>();
-        newNumbers.addAll(List.of(phoneNumbers));
-        phonebook.put(name, newNumbers);
+        phonebook.put(name, Arrays.asList(phoneNumbers));
     }
 
     public void remove(String name) {
-        phonebook.remove(name);
+        this.phonebook.remove(name);
     }
 
     public Boolean hasEntry(String name) {
-        if (Objects.requireNonNull(phonebook).containsKey(name))
-            return true;
-        return false;
+        return phonebook.containsKey(name);
     }
 
 
     public List<String> lookup(String name) {
-        if (phonebook.containsKey(name)) {
-            return Collections.singletonList(name);
-        }
-        return null;
+        return phonebook.get(name);
     }
 
     public String reverseLookup(String phoneNumber)  {
